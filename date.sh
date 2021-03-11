@@ -104,6 +104,9 @@ sql_date_strings=${sql_date_strings:1}
 sql_int_to_date=$(printf ",(to_date(%s::text, 'YYYYMMDD'))" "${intvalues[@]}")
 sql_int_to_date=${sql_int_to_date:1}
 
+sql_intval_to_date=$(printf ",(to_date('%s', 'YYYYMMDD'))" "${intvalues[@]}")
+sql_intval_to_date=${sql_intval_to_date:1}
+
 sql_ints=$(printf ",(%s)" "${intvalues[@]}")
 sql_ints=${sql_ints:1}
 
@@ -121,6 +124,9 @@ measure $iterations query "TRUNCATE TABLE demo; INSERT INTO demo (date) VALUES $
 echo "========================================================================="
 echo "INSERT INTO demo VALUES (to_date(20100101::text, 'YYYYMMDD'))"
 measure $iterations query "TRUNCATE TABLE demo; INSERT INTO demo (date) VALUES $sql_int_to_date;"
+echo "========================================================================="
+echo "INSERT INTO demo VALUES (to_date('20100101', 'YYYYMMDD'))"
+measure $iterations query "TRUNCATE TABLE demo; INSERT INTO demo (date) VALUES $sql_intval_to_date;"
 echo "========================================================================="
 echo "SELECT date FROM demo"
 measure $iterations query "SELECT date FROM demo;"
