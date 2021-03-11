@@ -10,5 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: exivity/actions/postgres@master
-      - run: sudo -u postgres createdb test
-      - run: sudo -u postgres bash date.sh
+      - run: createdb -h localhost test
+      - run: bash date.sh

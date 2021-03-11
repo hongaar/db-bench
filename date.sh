@@ -33,7 +33,7 @@ function join {
 
 function query {
     echo $1 > query.sql
-    psql -q -d $db -f query.sql > results
+    psql -q -h localhost -d $db -f query.sql > results
     rm query.sql
     rm results
 }
