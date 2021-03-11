@@ -1,13 +1,18 @@
 name: test
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PGUSER: postgres
+      PGPASSWORD: postgres
+
     steps:
       - uses: actions/checkout@v2
       - uses: exivity/actions/postgres@master
+      - run: sudo -u postgres createdb test
       - run: bash date.sh
