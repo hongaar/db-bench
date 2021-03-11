@@ -1,0 +1,13 @@
+name: test
+
+# Controls when the action will run. 
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: exivity/actions/postgres@master
+      - run: bash date.sh
