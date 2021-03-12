@@ -51,10 +51,10 @@ function cleanup {
 
 # Usage: stats (100 200)
 function stats {
-    printf '%s\n' "$@" | awk "NR==1  {min=max=$1}
-     NF > 0 {total+=$1; c++;
-             if ($1<min) {min=$1}
-             if ($1>max) {max=$1}
+    printf '%s\n' "$@" | awk "NR==1  {min=max=\$1}
+     NF > 0 {total+=\$1; c++;
+             if (\$1<min) {min=\$1}
+             if (\$1>max) {max=\$1}
             }
      END {OFMT=\"%.6f\"
           print \"n   : \" c
